@@ -2,21 +2,29 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'standard',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
+    'plugin:jsx-a11y/recommended',
   ],
   plugins: ['simple-import-sort'],
   env: {
     node: true,
     es6: true,
     browser: true,
+    jest: true,
   },
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    // typescript-eslint specific options
     warnOnUnsupportedTypeScriptVersion: true,
   },
   rules: {
@@ -83,6 +91,7 @@ module.exports = {
       },
     ],
     'array-callback-return': 'warn',
+    'jsx-quotes': ['error', 'prefer-double'],
     'max-len': ['off'],
     indent: 'off',
     quotes: ['error', 'single'],
@@ -97,7 +106,23 @@ module.exports = {
 
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+
+    'react/prop-types': 'off',
+    'react/jsx-wrap-multilines': 'error',
+    'react/display-name': 'off',
+    // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
+
+  overrides: [
+    {
+      files: ['*.js', '*.jsx'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
 
   settings: {
     react: {

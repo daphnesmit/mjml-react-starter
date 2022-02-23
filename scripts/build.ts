@@ -2,7 +2,7 @@ import fs from 'fs';
 import { render } from 'mjml-react';
 import path from 'path';
 
-import * as mails from '../src/templates';
+import * as mails from '../src/templates/example';
 
 const clearDirectory = (directory: string) => {
   const files = fs.readdirSync(directory);
@@ -12,7 +12,7 @@ const clearDirectory = (directory: string) => {
   }
 };
 
-const generatedDirectory = path.join(__dirname, '../generated');
+const generatedDirectory = path.join(__dirname, '../dist');
 
 if (!fs.existsSync(generatedDirectory)) {
   fs.mkdirSync(generatedDirectory);
@@ -30,6 +30,7 @@ const generateTemplate = (name: string, mail: React.ReactElement) => {
   try {
     fs.writeFileSync(path.join(generatedDirectory, `./${name}.html`), data);
     // file written successfully
+    console.log('\x1b[34m', `Done building email template: ${name}`);
   } catch (error) {
     console.error(`Error generating html file for ${name}: `, error);
   }
@@ -38,6 +39,7 @@ const generateTemplate = (name: string, mail: React.ReactElement) => {
 //  Get all React templates and compile to templates
 const generateTemplates = () => {
   Object.keys(mails).forEach((key) => generateTemplate(key, (mails as any)[key]));
+  console.log('\x1b[32m', '✨ Done building email templates!');
 };
 
 generateTemplates();
