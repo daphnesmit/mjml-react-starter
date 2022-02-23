@@ -6,6 +6,60 @@ Get started with developing emails with React Components. This starter includes 
 Check out the docs of [mjml-react](https://github.com/wix-incubator/mjml-react) on how to develop emails with React Components.
 
 
+### But Daphne? Why mjml-react and not normal mjml?!
+Normal mjml can be great for simple templates. If you just need 1 or 2 simple templates this will just be enough for you, really.
+
+But, say you need to make multiple templates that all use shared reusable components or you need theming through a ThemeProvider or such. 
+Than this mjml-react-starter is just the tool for you!
+
+Here is an example of where this starter becomes something powerfull for you:
+```tsx
+import { ThemeProvider, useTheme } from 'styled-components';
+
+interface IMailButton extends HrefProps, Pick<MjmlButtonProps, 'verticalAlign' | 'align'>, ClassNameProps {
+  variant?: 'primary' | 'secondary'
+  size?: 's' | 'm' | 'l'
+}
+
+export const MailButton: React.FC<IMailButton> = ({ children, variant = 'primary', size = 'm', ...props }) => {
+  const theme = useTheme() as TitanTheme;
+
+  return (
+    <MjmlButton
+      padding="0"
+        fontFamily={`${theme.components.defaultTextStyles[type].fontFamily}, Arial, Helvetica, sans-serif`}
+      backgroundColor={theme.components.button.variants[variant].backgroundColor}
+      color={theme.components.button.variants[variant].textColor}
+      borderRadius={theme.components.button.borderRadius}
+      innerPadding={theme.components.button.sizes[size].padding}
+      {...props}
+    >
+    {children}
+    </MjmlButton>
+  );
+};
+
+export const example = (
+<ThemeProvider theme={myCustomTheme}>
+  <Mjml>
+    <MjmlHead>
+      <MjmlTitle>My new email</MjmlTitle>
+    </MjmlHead>
+    <MjmlBody width={500}>
+      <MjmlWrapper>
+        <MailSection>
+          <MailButton href="https://www.daphnesmit.nl">
+            Click me
+          </MjmlButton>
+        </MailSection>
+      </MjmlWrapper>
+    </MjmlBody>
+  </Mjml>
+</ThemeProvider>
+);
+
+```
+
 ## Development server
 Run `yarn dev` in your terminal to start up the development server.
 

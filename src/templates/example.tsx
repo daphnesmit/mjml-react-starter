@@ -19,7 +19,7 @@ export const example = (
           <MjmlButton
             padding="20px"
             backgroundColor="#346DB7"
-            href="https://www.wix.com/"
+            href="https://www.daphnesmit.nl"
           >
             I like it!
           </MjmlButton>
