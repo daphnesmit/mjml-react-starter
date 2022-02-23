@@ -17,45 +17,45 @@ Here is an example of where this starter becomes something powerfull for you:
 import { ThemeProvider, useTheme } from 'styled-components';
 
 interface IMailButton extends HrefProps, Pick<MjmlButtonProps, 'verticalAlign' | 'align'>, ClassNameProps {
-  variant?: 'primary' | 'secondary'
-  size?: 's' | 'm' | 'l'
+    variant?: 'primary' | 'secondary'
+    size?: 's' | 'm' | 'l'
 }
 
 export const MailButton: React.FC<IMailButton> = ({ children, variant = 'primary', size = 'm', ...props }) => {
-  const theme = useTheme() as TitanTheme;
+    const theme = useTheme() as TitanTheme;
 
-  return (
-    <MjmlButton
-      padding="0"
-        fontFamily={`${theme.components.defaultTextStyles[type].fontFamily}, Arial, Helvetica, sans-serif`}
-      backgroundColor={theme.components.button.variants[variant].backgroundColor}
-      color={theme.components.button.variants[variant].textColor}
-      borderRadius={theme.components.button.borderRadius}
-      innerPadding={theme.components.button.sizes[size].padding}
-      {...props}
-    >
-    {children}
-    </MjmlButton>
-  );
+    return (
+        <MjmlButton
+            padding="0"
+            fontFamily={`${theme.components.defaultTextStyles[type].fontFamily}, Arial, Helvetica, sans-serif`}
+            backgroundColor={theme.components.button.variants[variant].backgroundColor}
+            color={theme.components.button.variants[variant].textColor}
+            borderRadius={theme.components.button.borderRadius}
+            innerPadding={theme.components.button.sizes[size].padding}
+            {...props}
+        >
+            {children}
+        </MjmlButton>
+    );
 };
 
 export const example = (
-<ThemeProvider theme={myCustomTheme}>
-  <Mjml>
-    <MjmlHead>
-      <MjmlTitle>My new email</MjmlTitle>
-    </MjmlHead>
-    <MjmlBody width={500}>
-      <MjmlWrapper>
-        <MailSection>
-          <MailButton href="https://www.daphnesmit.nl">
-            Click me
-          </MjmlButton>
-        </MailSection>
-      </MjmlWrapper>
-    </MjmlBody>
-  </Mjml>
-</ThemeProvider>
+    <ThemeProvider theme={myCustomTheme}>
+        <Mjml>
+            <MjmlHead>
+                <MjmlTitle>My new email</MjmlTitle>
+            </MjmlHead>
+            <MjmlBody width={500}>
+                <MjmlWrapper>
+                    <MailSection>
+                        <MailButton href="https://www.daphnesmit.nl">
+                            Click me
+                        </MjmlButton>
+                    </MailSection>
+                </MjmlWrapper>
+            </MjmlBody>
+        </Mjml>
+    </ThemeProvider>
 );
 
 ```
