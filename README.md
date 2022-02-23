@@ -21,13 +21,17 @@ export const example = (
 )
 ```
 
-The name of gets translated to a url in the dev server.
-So if you now navigate to http://localhost:3000/example you will see the example template here. In `./scripts/dev.ts` you can change also the name of the mail template to be server from the root at http://localhost:3000.
+The name of the export gets translated to a url in the dev server.
+
+So if you now navigate to http://localhost:3000/example you will see the example template here.
+In `./scripts/dev.ts` you can also change the name of the mail template to be served from the root at http://localhost:3000.
 
 ## Build an HTML file
 Run `yarn build` in your terminal to start building your HTML email template.
 
 This will generate all your HTML templates and place them in the `./dist` folder
+## Linting
+Run `yarn lint-fix` in your terminal to start fixing any linting errors.
 
 
 ### Contributing
