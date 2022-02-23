@@ -30,6 +30,16 @@ In `./scripts/dev.ts` you can also change the name of the mail template to be se
 Run `yarn build` in your terminal to start building your HTML email template.
 
 This will generate all your HTML templates and place them in the `./dist` folder
+## Adding template tags
+The build automatically transforms tags for you.
+
+If you add variables like this `[[ someVarName ]]` the build will output this in the .html file as `{{ someVarName }}`.
+Since `{{ }}` brackets are used for react variables we insert them with `[[ ]]` square brackets around it.
+
+```tsx
+<MjmlButton href="[[ someLinkVar ]]">Button</MjmlButton>
+```
+
 ## Linting
 Run `yarn lint-fix` in your terminal to start fixing any linting errors.
 
